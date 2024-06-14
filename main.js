@@ -22,7 +22,7 @@ let config = {
       }
     }
   
-    // Send the email
+    // Send the email alert
     if (config.emailMessage.length > 'The following campaigns have received low impressions below the Impression Threshold of ' + 
                                     config.impressionThreshold + ' impressions:\n\n'.length) {
       MailApp.sendEmail(config.emailAddresses.split(','), config.emailSubject, config.emailMessage);
