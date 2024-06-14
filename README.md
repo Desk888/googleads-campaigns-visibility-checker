@@ -1,3 +1,4 @@
+
 # Google Ads Script: Daily Campaign Visibility Checks
 
 ## Overview
@@ -16,3 +17,48 @@ let config = {
   emailMessage: "The following campaigns have received low impressions below the Impression Threshold of " + 
                 config.impressionThreshold + " impressions:\n\n"
 };
+```
+
+- **`impressionThreshold`**: Specifies the minimum number of impressions below which a campaign is considered to have low visibility.
+- **`emailAddresses`**: Email addresses where the alert notifications will be sent. Separate multiple addresses with commas.
+- **`emailSubject`**: Subject line for the email alert.
+- **`emailMessage`**: Initial content of the email alert message. The script appends campaign details dynamically based on the actual impressions.
+
+## Usage
+
+1. **Accessing Google Ads Scripts**:
+   - Go to your Google Ads account.
+   - Navigate to "Tools & Settings" -> "Scripts".
+
+2. **Creating a New Script**:
+   - Click on the "+" button to create a new script.
+   - Copy and paste the provided script into the editor.
+
+3. **Authorizing the Script**:
+   - If prompted, authorize the script to run with your Google Ads account.
+
+4. **Setting up Triggers**:
+   - Set up a trigger to schedule the script to run daily at a specific time (e.g., every day at midnight).
+
+5. **Monitoring Script Execution**:
+   - View execution logs in the Google Ads Scripts console to monitor script activity and email alerts.
+
+## Example Output
+
+If any campaigns have impressions below the specified threshold, the script will send an email similar to the following:
+
+```
+Subject: Daily Campaign Visibility Checks
+
+The following campaigns have received low impressions below the Impression Threshold of 10 impressions:
+
+Campaign: Campaign A - Impressions: 5
+Campaign: Campaign B - Impressions: 8
+```
+
+## Notes
+
+- Ensure that your Google Ads account has the necessary permissions to run scripts and send emails.
+- Adjust the `impressionThreshold` value according to your campaign performance goals.
+- Review and customize the email message content (`emailMessage` variable) to suit your specific requirements.
+```
