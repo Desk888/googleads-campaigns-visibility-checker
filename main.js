@@ -1,7 +1,7 @@
 // Configurations
 let config = {
     impressionThreshold: '5', // Change Impr. Threshold
-    emailAddresses: "lorenzo.filippini@croud.com", // Separate email addresses with a comma
+    emailAddresses: "Enter your email address here", // Separate email addresses with a comma
     emailMessage: '' // Do not add anything here
 };
 function main() {
