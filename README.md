@@ -1,64 +1,79 @@
+# Daily Campaign Visibility Checks
 
-# Google Ads Script: Daily Campaign Visibility Checks
+This script performs daily visibility checks on Google Ads campaigns and sends an email alert if any campaigns have received low impressions below a specified threshold.
 
-## Overview
+## Getting Started
 
-This Google Ads script monitors campaigns for low impressions and sends an email alert if any campaign falls below a specified impression threshold for the current day.
+These instructions will help you set up and run the script to perform daily campaign visibility checks.
 
-## Configuration
+### Prerequisites
 
-Before using the script, ensure you configure the following parameters in the `config` object:
+- Google Ads account
+- Google Apps Script project
+- Access to the MailApp service for sending email alerts
 
-```javascript
-let config = {
-  impressionThreshold: 10, // Change Impr. Threshold as per your requirement
-  emailAddresses: "your-email@example.com", // Separate multiple email addresses with a comma
-  emailSubject: "Daily Campaign Visibility Checks",
-  emailMessage: "The following campaigns have received low impressions below the Impression Threshold of " + 
-                config.impressionThreshold + " impressions:\n\n"
-};
-```
+### Configuration
 
-- **`impressionThreshold`**: Specifies the minimum number of impressions below which a campaign is considered to have low visibility.
-- **`emailAddresses`**: Email addresses where the alert notifications will be sent. Separate multiple addresses with commas.
-- **`emailSubject`**: Subject line for the email alert.
-- **`emailMessage`**: Initial content of the email alert message. The script appends campaign details dynamically based on the actual impressions.
+1. Open the script in your Google Apps Script project.
+2. In the `config` object, set the following variables:
+   - `impressionThreshold`: The minimum number of impressions a campaign should have. If a campaign's impressions fall below this threshold, it will be included in the email alert. Default value is '5'.
+   - `emailAddresses`: The email addresses to which the alert should be sent. Multiple email addresses can be specified by separating them with commas.
 
-## Usage
+### Usage
 
-1. **Accessing Google Ads Scripts**:
-   - Go to your Google Ads account.
-   - Navigate to "Tools & Settings" -> "Scripts".
+1. Run the `main` function to start the script.
+2. The script will retrieve the campaigns from the connected Google Ads account and check their visibility.
+3. If any campaigns have received impressions below the specified threshold, an email alert will be sent to the configured email addresses.
+4. The script will log the progress and completion status in the Google Apps Script logger.
 
-2. **Creating a New Script**:
-   - Click on the "+" button to create a new script.
-   - Copy and paste the provided script into the editor.
+## Functionality
 
-3. **Authorizing the Script**:
-   - If prompted, authorize the script to run with your Google Ads account.
+The script performs the following steps:
 
-4. **Setting up Triggers**:
-   - Set up a trigger to schedule the script to run daily at a specific time (e.g., every day at midnight).
+1. Selects the current Google Ads account and retrieves the account name.
+2. Sets the email subject dynamically based on the account name.
+3. Initializes the email message with an HTML table structure.
+4. Iterates over all the campaigns in the account.
+5. For each enabled campaign, retrieves the impression statistics for the current day.
+6. If the number of impressions is less than or equal to the specified `impressionThreshold`, the campaign is considered to have low visibility and is added to the email message.
+7. After iterating through all campaigns, the script closes the HTML table and body tags.
+8. If any campaigns with low visibility are found, the script sends an email alert to the specified email addresses.
+9. If no campaigns with low visibility are found, the script logs a message indicating that no low impression campaigns were found.
 
-5. **Monitoring Script Execution**:
-   - View execution logs in the Google Ads Scripts console to monitor script activity and email alerts.
+## Email Alert Format
 
-## Example Output
+The email alert includes the following information:
 
-If any campaigns have impressions below the specified threshold, the script will send an email similar to the following:
+- Subject: "Daily Campaign Visibility Checks for: [Account Name]"
+- Body:
+  - Heading: "Daily Campaign Visibility Checks"
+  - Paragraph: "The following campaigns have received low impressions below the Impression Threshold of [Impression Threshold] impressions:"
+  - Table:
+    - Header:
+      - Engine
+      - Account Name
+      - Campaign Name
+      - Impressions
+    - Rows (for each low visibility campaign):
+      - Engine: "Google Ads"
+      - Account Name: The name of the Google Ads account
+      - Campaign Name: The name of the campaign
+      - Impressions: The number of impressions received by the campaign
 
-```
-Subject: Daily Campaign Visibility Checks
+## Built With
 
-The following campaigns have received low impressions below the Impression Threshold of 10 impressions:
+- Google Apps Script
+- Google Ads API
+- MailApp service
 
-Campaign: Campaign A - Impressions: 5
-Campaign: Campaign B - Impressions: 8
-```
+## License
 
-## Notes
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-- Ensure that your Google Ads account has the necessary permissions to run scripts and send emails.
-- Adjust the `impressionThreshold` value according to your campaign performance goals.
-- Review and customize the email message content (`emailMessage` variable) to suit your specific requirements.
-```
+## Acknowledgments
+
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc.
+
+Feel free to customize the README file further based on your specific project requirements and add any additional sections or information as needed.
