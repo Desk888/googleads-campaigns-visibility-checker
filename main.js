@@ -12,6 +12,7 @@ function main() {
     Logger.log('Account Name: ' + accountName);
 
     let accountId = AdsApp.currentAccount().getCustomerId();
+    Logger.log('Account ID: ' + accountId);
     
     // Set the email subject dynamically
     config.emailSubject = "Daily Campaign Visibility Checks for: " + accountName + " - ID: " + accountId;
