@@ -66,10 +66,4 @@ The email alert includes the following information:
 - Google Ads API
 - MailApp service
 
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc.
-
 Feel free to customize the README file further based on your specific project requirements and add any additional sections or information as needed.
